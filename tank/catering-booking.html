@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Catering Booking Admin - Enhanced UI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        body {
+            background: linear-gradient(113deg, #501F56, #19021C);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        nav {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 32px;
+            background: rgba(25, 2, 28, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(252, 220, 59, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+        }
+
+        .logo img {
+            height: 54px;
+            width: 54px;
+            border-radius: 12px;
+            object-fit: cover;
+            border: 2px solid rgba(252, 220, 59, 0.5);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            margin: 0;
+            padding: 0;
+            font-weight: 600;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            cursor: pointer;
+            padding: 8px 16px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            border-radius: 22px;
+            color: #ddd;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav ul li a:hover {
+            background: #fcdc3b;
+            color: #3a1d59;
+            box-shadow: 0 0 12px #fcdc3b;
+        }
+
+        .booking-container {
+            margin-top: 60px;
+            margin-bottom: 30px;
+            width: 100%;
+            max-width: 520px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(18px);
+            border-radius: 24px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.55);
+            padding: 40px 35px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .booking-container:hover {
+            transform: translateY(-6px);
+        }
+
+        .booking-container h2 {
+            font-size: 2.3rem;
+            margin-bottom: 28px;
+            font-weight: 800;
+            color: #fcdc3b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .info-grid {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .info-box {
+            flex: 1;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .info-box .label {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 6px;
+            font-weight: 600;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .info-box .value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .input-group {
+            margin-bottom: 28px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        input[type="number"] {
+            background: rgba(0, 0, 0, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            color: #fff;
+            padding: 14px 16px;
+            border-radius: 12px;
+            width: 100%;
+            font-size: 1.2rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="number"]:focus {
+            border-color: #fcdc3b;
+            box-shadow: 0 0 12px rgba(252, 220, 59, 0.5);
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        .book-btn {
+            background: #fcdc3b;
+            color: #3a1d59;
+            font-weight: 800;
+            padding: 15px 30px;
+            border-radius: 12px;
+            border: none;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            width: 100%;
+        }
+
+        .book-btn i {
+            margin-left: 8px;
+        }
+
+        .book-btn:hover {
+            background: #e0bf2e;
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(252, 220, 59, 0.35);
+        }
+
+        .public-btn {
+            margin-top: 30px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.1rem;
+            padding: 15px 32px;
+            border-radius: 14px;
+            border: none;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 8px 22px rgba(231, 76, 60, 0.45);
+        }
+
+        .public-btn i {
+            margin-left: 10px;
+        }
+
+        .public-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 28px rgba(231, 76, 60, 0.55);
+        }
+
+        .joi {
+            padding: 6px 20px;
+            background-color: gold;
+            color: black;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 4px;
+            box-shadow: 0 4px 18px #fcdc3b59;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <img src="logo.png" alt="Logo" />
+        </div>
+        <ul>
+            <li onclick="navigateTo('home.html')">Home</li>
+            <li onclick="navigateTo('about.html')">About</li>
+            <li onclick="navigateTo('contact.html')">Contact</li>
+            <li onclick="navigateTo('review.html')">Review</li>
+            <li onclick="navigateTo('join.html')"><span class="joi">Join Us</span></li>
+        </ul>
+    </nav>
+
+    <div class="booking-container">
+        <h2><i class="fa fa-calendar-check"></i> Booking Panel</h2>
+
+        <div class="info-grid">
+            <div class="info-box">
+                <div class="label"><i class="fa fa-users"></i> Total Slots</div>
+                <div class="value" id="totalMembers">15</div>
+            </div>
+            <div class="info-box">
+                <div class="label"><i class="fa fa-user-check"></i> Available</div>
+                <div class="value" id="availableMembers">15/15</div>
+            </div>
+        </div>
+
+        <div class="input-group">
+            <label for="memberInput">Enter Number of Members to Book</label>
+            <input type="number" id="memberInput" min="1" max="15" placeholder="0" />
+        </div>
+
+        <button class="book-btn" onclick="bookMembers()">Book Now <i class="fa fa-arrow-right"></i></button>
+    </div>
+
+    <button class="public-btn" id="publicBtn">Publish Availability <i class="fa fa-globe"></i></button>
+
+    <script>
+        let totalMembers = 15;
+        let bookedMembers = 0;
+
+        function updateDisplay() {
+            document.getElementById('totalMembers').innerText = totalMembers;
+            const available = totalMembers - bookedMembers;
+            document.getElementById('availableMembers').innerText = available;
+            document.getElementById('memberInput').max = available;
+
+            if (available > 0) {
+                document.getElementById('memberInput').placeholder = `Max ${available}`;
+            } else {
+                document.getElementById('memberInput').placeholder = "Full";
+                document.getElementById('memberInput').disabled = true;
+                document.querySelector('.book-btn').disabled = true;
+            }
+        }
+
+        function bookMembers() {
+            const inputElement = document.getElementById('memberInput');
+            const input = inputElement.value;
+            const num = parseInt(input);
+            if (isNaN(num) || num < 1 || num > (totalMembers - bookedMembers)) {
+                alert('❌ Invalid member count! Please enter a number between 1 and ' + (totalMembers - bookedMembers));
+                return;
+            }
+            bookedMembers += num;
+            updateDisplay();
+            alert('✅ ' + num + ' member(s) booked successfully!');
+            inputElement.value = '';
+        }
+
+        function navigateTo(url) {
+            window.location.href = url;
+        }
+
+        document.getElementById('publicBtn').addEventListener('click', function () {
+            const available = totalMembers - bookedMembers;
+            localStorage.setItem("remainingSlot", JSON.stringify({ available }));
+            alert('✅ Availability has been published! Redirecting...');
+            window.location.href = 'home.html';
+        });
+
+        updateDisplay();
+    </script>
+</body>
+
+</html>
